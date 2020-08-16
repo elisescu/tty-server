@@ -16,6 +16,7 @@ func main() {
 	senderAddress := flag.String("sender_address", ":6543", "The bind address for the tty-share TLS connections. tty-share tool will connect to this address.")
 	url := flag.String("url", "http://localhost", "The public web URL the server will be accessible at. This will be sent back to the tty-share tool to display it to the user.")
 	frontendPath := flag.String("frontend_path", "", "The path to the frontend resources. By default, these resources are included in the server binary, so you only need this path if you don't want to use the bundled ones.")
+	scrollBack := flag.Int("scroll_back", 1024, "Set scrollback buffer size for viewers")
 	flag.Parse()
 
 	log := MainLogger
@@ -26,6 +27,7 @@ func main() {
 		TTYSenderAddress: *senderAddress,
 		ServerURL:        *url,
 		FrontendPath:     *frontendPath,
+		ScrollBack:       *scrollBack,
 	}
 
 	server := NewTTYServer(config)

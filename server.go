@@ -24,9 +24,10 @@ var log = MainLogger
 
 // SessionTemplateModel used for templating
 type SessionTemplateModel struct {
-	SessionID string
-	Salt      string
-	WSPath    string
+	SessionID  string
+	Salt       string
+	WSPath     string
+	ScrollBack int
 }
 
 // TTYServerConfig is used to configure the tty server before it is started
@@ -38,6 +39,7 @@ type TTYServerConfig struct {
 	TLSCertFile  string
 	TLSKeyFile   string
 	FrontendPath string
+	ScrollBack   int
 }
 
 // TTYServer represents the instance of a tty server
@@ -186,9 +188,10 @@ func (server *TTYServer) handleSession(w http.ResponseWriter, r *http.Request) {
 	}
 
 	templateModel := SessionTemplateModel{
-		SessionID: sessionID,
-		Salt:      "salt&pepper",
-		WSPath:    getWSPath(sessionID),
+		SessionID:  sessionID,
+		Salt:       "salt&pepper",
+		WSPath:     getWSPath(sessionID),
+		ScrollBack: server.config.ScrollBack,
 	}
 	err = t.Execute(w, templateModel)
 

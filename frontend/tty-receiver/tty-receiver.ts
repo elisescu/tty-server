@@ -11,13 +11,13 @@ class TTYReceiver {
     private xterminal: Terminal;
     private containerElement: HTMLElement;
 
-    constructor(wsAddress: string, container: HTMLDivElement) {
+    constructor(wsAddress: string, container: HTMLDivElement, scrollback: number) {
         const connection = new WebSocket(wsAddress);
 
         this.xterminal = new Terminal({
             cursorBlink: true,
             macOptionIsMeta: true,
-            scrollback: 0,
+            scrollback: scrollback,
             fontSize: 12,
             letterSpacing: 0,
         });
