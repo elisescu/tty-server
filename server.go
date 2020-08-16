@@ -28,6 +28,7 @@ type SessionTemplateModel struct {
 	Salt       string
 	WSPath     string
 	ScrollBack int
+	NoClear    bool
 }
 
 // TTYServerConfig is used to configure the tty server before it is started
@@ -40,6 +41,7 @@ type TTYServerConfig struct {
 	TLSKeyFile   string
 	FrontendPath string
 	ScrollBack   int
+	NoClear      bool
 }
 
 // TTYServer represents the instance of a tty server
@@ -192,6 +194,7 @@ func (server *TTYServer) handleSession(w http.ResponseWriter, r *http.Request) {
 		Salt:       "salt&pepper",
 		WSPath:     getWSPath(sessionID),
 		ScrollBack: server.config.ScrollBack,
+		NoClear:    server.config.NoClear,
 	}
 	err = t.Execute(w, templateModel)
 

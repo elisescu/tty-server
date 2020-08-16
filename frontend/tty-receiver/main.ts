@@ -28,5 +28,6 @@ wsAddress += ttyWindow.location.host + ttyWindow.ttyInitialData.wsPath;
 const ttyReceiver = new TTYReceiver(
     wsAddress, 
     document.getElementById('terminal') as HTMLDivElement, 
-    ttyWindow.ttyInitialData.scrollBack
+    ttyWindow.ttyInitialData.scrollBack,
+    !ttyWindow.ttyInitialData.noClear
 );

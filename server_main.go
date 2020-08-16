@@ -17,6 +17,7 @@ func main() {
 	url := flag.String("url", "http://localhost", "The public web URL the server will be accessible at. This will be sent back to the tty-share tool to display it to the user.")
 	frontendPath := flag.String("frontend_path", "", "The path to the frontend resources. By default, these resources are included in the server binary, so you only need this path if you don't want to use the bundled ones.")
 	scrollBack := flag.Int("scroll_back", 1024, "Set scrollback buffer size for viewers")
+	noClear := flag.Bool("noclear", false, "Don't clear web terminal buffer when session is closed")
 	flag.Parse()
 
 	log := MainLogger
@@ -28,6 +29,7 @@ func main() {
 		ServerURL:        *url,
 		FrontendPath:     *frontendPath,
 		ScrollBack:       *scrollBack,
+		NoClear:          *noClear,
 	}
 
 	server := NewTTYServer(config)
