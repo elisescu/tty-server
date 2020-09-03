@@ -79,3 +79,11 @@ For the stream , you'll need the stream module from nginx. This configuration ca
         }
     }
 
+You'll have to adapt the URL variable to use the nginx URL:
+
+    docker run \
+      -p 6543:6543 -p 5000:5000 \
+      -e URL=https://server.domain.com \
+      --cap-drop=all --rm \
+      tty-server
+  
