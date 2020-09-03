@@ -36,6 +36,12 @@ defaults by specifying a different port mapping on the command line, e.g.
 
 You'll need a certificate and the associed key file.
 Here is an example for a setup with `nginx` as proxy
+The idea is use nginx as
+  * reverse proxy for the web interface at port 5000 (listen at 443, terminate the TLS, and redirect to  localhost:5000)
+  * TLS endpoint at port 7654, and redirect to localhost:6543
+
+The client usage (after this TLS setup): `tty-share -server server:7654`  
+
 
 ### nginx config for the web/browser side (http+websockets connection)
 This section can go for example in `/etc/nginx/site-enabled/default`
