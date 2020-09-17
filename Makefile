@@ -3,10 +3,12 @@ TTY_SERVER=./tty-server
 TTY_SERVER_ASSETS=$(wildcard frontend/public/*) frontend/public/index.html
 TTY_SERVER_SRC=$(wildcard *.go) assets_bundle.go
 
-.PHONY: all frontend clean cleanfront
+.PHONY: all frontend clean cleanfront rebuild
 
 all: $(TTY_SERVER)
 	@echo "Done"
+
+rebuild: clean all
 
 # Building the server and tty-share
 $(TTY_SERVER): $(TTY_SERVER_SRC)
