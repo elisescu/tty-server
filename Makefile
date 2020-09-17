@@ -19,10 +19,9 @@ assets_bundle.go: $(TTY_SERVER_ASSETS)
 %.zip: %
 	zip $@ $^
 
-frontend: frontend/public/index.html
+frontend: cleanfront frontend/public/index.html
 
 frontend/public/index.html:
-	rm -fr frontend/public
 	cd frontend && npm install && npm run build && cd -
 
 cleanfront:
