@@ -3,7 +3,7 @@ TTY_SERVER=./tty-server
 TTY_SERVER_ASSETS=$(wildcard frontend/public/*) frontend/public/index.html
 TTY_SERVER_SRC=$(wildcard *.go) assets_bundle.go
 
-.PHONY: frontend clean cleanfront
+.PHONY: all frontend clean cleanfront
 
 all: $(TTY_SERVER)
 	@echo "Done"
