@@ -18,7 +18,7 @@ Vagrant.configure("2") do |config|
   
   $install_script = <<-SCRIPT
     build_deps="golang make go-dep" 
-    runtime_deps="dumb-init bash"
+    runtime_deps="dumb-init git"
 
     apt-get update && \
       apt-get install -y $build_deps $runtime_deps && \
