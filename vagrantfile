@@ -1,8 +1,7 @@
 Vagrant.configure("2") do |config|
 
   # Every Vagrant virtual environment requires a box to build off of.
-  config.vm.box = "becorecode/alpinelinux-3.11"
-  config.vm.box_version = "1.0.0"
+  config.vm.box = "ubuntu/focal64"
   
   # Create a forwarded port mapping which allows access to a specific port
   # within the machine from a port on the host machine.
@@ -17,20 +16,16 @@ Vagrant.configure("2") do |config|
   # Handy if you need to share a clipboard, convey viewport info, etc.
   config.ssh.forward_x11 = true
   
-  config.ssh.shell = "ash"
-  
   $install_script = <<-SCRIPT
     build_deps="go make dep" 
     runtime_deps="dumb-init bash"
 
-    apk update && \
-      apk add -u $build_deps $runtime_deps && \
-      cd /go/src/github.com/elisescu/tty-server && \
-      GOPATH=/go dep ensure && \
-      GOPATH=/go make all && \
-      cp tty-server /usr/bin/ && \
-      rm -r /go && \
-      apk del $build_deps
+    apt-get update && \
+      apt-get install -u $build_deps $runtime_deps && \
+      cd /home/vagrant/go/src/github.com/elisescu/tty-server && \
+      GOPATH=/home/vagrant/go dep ensure && \
+      GOPATH=/home/vagrant/go make all && \
+      ln -s /home/vagrant/go/src/github.com/elisescu/tty-server/tty-server /usr/bin/tty-server
   SCRIPT
 
   $serve_script = <<-'SCRIPT'
@@ -43,7 +38,7 @@ EOD
   SCRIPT
    
   config.vm.provision "file", source: ".", destination: "$HOME/go/src/github.com/elisescu/tty-server"
-  config.vm.provision "shell", inline: 'mv "/home/vagrant/go" "/go"', name: "move_go"
+  # config.vm.provision "shell", inline: 'mv "/home/vagrant/go" "/go"', name: "move_go"
   config.vm.provision "shell", inline: $install_script, name: "install"
   config.vm.provision "shell", inline: $serve_script, name: "serve"
 
