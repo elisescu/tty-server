@@ -33,11 +33,11 @@ Vagrant.configure("2") do |config|
       apk del $build_deps
   SCRIPT
 
-  $serve_script = <<-SCRIPT
-    cat << EOD > /usr/bin/serve
+  $serve_script = <<-'SCRIPT'
+    cat << EOD | sed -e  "s#\\\\{#{#g; s#\\\\}#}#g" > /usr/bin/serve
 #!/usr/bin/env bash
-URL="${1:-http://localhost:5000}"
-/usr/bin/tty-server -web_address :5000 --sender_address :6543 -url "$URL"
+URL="$\\{1:-http://localhost:5000\\}"
+/usr/bin/tty-server -web_address :5000 --sender_address :6543 -url "$\\{URL\\}"
 EOD
     chmod a+x /usr/bin/serve
   SCRIPT
