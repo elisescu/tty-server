@@ -20,6 +20,7 @@ class TTYReceiver {
             scrollback: 0,
             fontSize: 12,
             letterSpacing: 0,
+            fontFamily: 'SourceCodePro'
         });
 
         this.containerElement = container;
