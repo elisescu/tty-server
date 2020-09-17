@@ -1,36 +1,36 @@
 @font-face {
-	font-family: Source Code Pro;
+	font-family: SourceCodePro;
 	font-style: normal;
 	font-weight: 300;
-	src: local("Source Code Pro Light"), local("SourceCodePro-Light"), url(https://cdn.jsdelivr.net/npm/source-code-pro@2.30.2/TTF/SourceCodePro-Light.ttf) format("truetype")
+	src: local("SourceCodeProLight"), local("SourceCodePro-Light"), url(https://cdn.jsdelivr.net/npm/source-code-pro@2.30.2/TTF/SourceCodePro-Light.ttf) format("truetype")
 }
 
 @font-face {
-	font-family: Source Code Pro;
+	font-family: SourceCodePro;
 	font-style: normal;
 	font-weight: 400;
-	src: local("Source Code Pro"), local("SourceCodePro-Regular"), url(https://cdn.jsdelivr.net/npm/source-code-pro@2.30.2/TTF/SourceCodePro-Regular.ttf) format("truetype")
+	src: local("SourceCodePro"), local("SourceCodePro-Regular"), url(https://cdn.jsdelivr.net/npm/source-code-pro@2.30.2/TTF/SourceCodePro-Regular.ttf) format("truetype")
 }
 
 @font-face {
-	font-family: Source Code Pro;
+	font-family: SourceCodePro;
 	font-style: normal;
 	font-weight: 600;
-	src: local("Source Code Pro Semibold"), local("SourceCodePro-Semibold"), url(https://cdn.jsdelivr.net/npm/source-code-pro@2.30.2/TTF/SourceCodePro-Semibold.ttf) format("truetype")
+	src: local("SourceCodeProSemibold"), local("SourceCodePro-Semibold"), url(https://cdn.jsdelivr.net/npm/source-code-pro@2.30.2/TTF/SourceCodePro-Semibold.ttf) format("truetype")
 }
 
 @font-face {
-	font-family: Source Code Pro;
+	font-family: SourceCodePro;
 	font-style: normal;
 	font-weight: 700;
-	src: local("Source Code Pro Bold"), local("SourceCodePro-Bold"), url(https://cdn.jsdelivr.net/npm/source-code-pro@2.30.2/TTF/SourceCodePro-Bold.ttf) format("truetype")
+	src: local("SourceCodeProBold"), local("SourceCodePro-Bold"), url(https://cdn.jsdelivr.net/npm/source-code-pro@2.30.2/TTF/SourceCodePro-Bold.ttf) format("truetype")
 }
 
 @font-face {
-	font-family: Source Code Pro;
+	font-family: SourceCodePro;
 	font-style: italic;
 	font-weight: 400;
-	src: local("Source Code Pro Italic"), local("SourceCodePro-It"), url(https://cdn.jsdelivr.net/npm/source-code-pro@2.30.2/TTF/SourceCodePro-It.ttf) format("truetype")
+	src: local("SourceCodeProItalic"), local("SourceCodePro-It"), url(https://cdn.jsdelivr.net/npm/source-code-pro@2.30.2/TTF/SourceCodePro-It.ttf) format("truetype")
 }
 
 html, body {
@@ -48,5 +48,5 @@ html, body {
 
 
 xterm {
-  font-family: Source Code Pro;
+  font-family: SourceCodePro;
 }
