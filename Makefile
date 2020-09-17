@@ -1,7 +1,9 @@
 TTY_SERVER=./tty-server
 
-TTY_SERVER_ASSETS=$(wildcard frontend/public/*)
+TTY_SERVER_ASSETS=$(wildcard frontend/public/*) frontend/public/index.html
 TTY_SERVER_SRC=$(wildcard *.go) assets_bundle.go
+
+.PHONY: frontend clean cleanfront
 
 all: $(TTY_SERVER)
 	@echo "Done"
@@ -12,17 +14,22 @@ $(TTY_SERVER): $(TTY_SERVER_SRC)
 
 assets_bundle.go: $(TTY_SERVER_ASSETS)
 	go get github.com/go-bindata/go-bindata/...
-	go-bindata --prefix frontend/public/ -o $@ $^
+	go-bindata --prefix frontend/public/ -o $@ frontend/public/*
 
 %.zip: %
 	zip $@ $^
 
-frontend: force
-	cd frontend && npm install && npm run build && cd -
-force:
+frontend: frontend/public/index.html
 
-clean:
-	rm -fr tty-server assets_bundle.go frontend/public
+frontend/public/index.html:
+	rm -fr frontend/public
+	cd frontend && npm install && npm run build && cd -
+
+cleanfront:
+	rm -fr frontend/public
+
+clean: cleanfront
+	rm -fr tty-server assets_bundle.go 
 	@echo "Cleaned"
 
 ## Development helper targets
