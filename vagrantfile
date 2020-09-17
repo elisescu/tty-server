@@ -17,11 +17,11 @@ Vagrant.configure("2") do |config|
   config.ssh.forward_x11 = true
   
   $install_script = <<-SCRIPT
-    build_deps="go make dep" 
+    build_deps="golang make go-dep" 
     runtime_deps="dumb-init bash"
 
     apt-get update && \
-      apt-get install -u $build_deps $runtime_deps && \
+      apt-get install -y $build_deps $runtime_deps && \
       cd /home/vagrant/go/src/github.com/elisescu/tty-server && \
       GOPATH=/home/vagrant/go dep ensure && \
       GOPATH=/home/vagrant/go make all && \
