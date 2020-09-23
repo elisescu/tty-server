@@ -33,12 +33,11 @@ let mainConfig  = {
       extensions: [".ts", ".tsx", ".js"],
     },
     plugins: [
-        new copyWebpackPlugin([
-            'static',
-            'templates',
-        ], {
-            debug: 'info',
-        }),
+      new copyWebpackPlugin({
+        patterns: [
+          {from: 'static', },
+          {from:   'templates',},
+        ]}),
     ],
 };
 
