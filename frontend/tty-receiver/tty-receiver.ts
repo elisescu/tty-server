@@ -60,8 +60,7 @@ class TTYReceiver {
             }
         }
 
-            // TODO: .on() is deprecated. Should be replaced.
-        this.xterminal.on('data', function (data) {
+        this.xterminal.onData(function (data:string) {
             let writeMessage = {
                 Type: "Write",
                 Data: base64.encode(JSON.stringify({ Size: data.length, Data: base64.encode(data)})),
