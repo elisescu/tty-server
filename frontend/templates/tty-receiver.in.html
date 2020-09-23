@@ -11,7 +11,9 @@
             window.ttyInitialData = {
                 sessionID: {{.SessionID}},
                 salt: {{.Salt}},
-                wsPath: {{.WSPath}}
+                wsPath: {{.WSPath}},
+                scrollBack: {{.ScrollBack}},
+                noClear: {{.NoClear}}
             }
             console.log("Initial data", window.ttyInitialData)
         </script>

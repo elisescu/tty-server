@@ -11,13 +11,13 @@ class TTYReceiver {
     private xterminal: Terminal;
     private containerElement: HTMLElement;
 
-    constructor(wsAddress: string, container: HTMLDivElement) {
+    constructor(wsAddress: string, container: HTMLDivElement, scrollback: number, clear: boolean) {
         const connection = new WebSocket(wsAddress);
 
         this.xterminal = new Terminal({
             cursorBlink: true,
             macOptionIsMeta: true,
-            scrollback: 0,
+            scrollback: scrollback,
             fontSize: 12,
             letterSpacing: 0,
         });
@@ -29,7 +29,9 @@ class TTYReceiver {
 
            this.xterminal.blur();
            this.xterminal.setOption('cursorBlink', false);
-           this.xterminal.clear();
+           if (clear) {
+              this.xterminal.clear();
+           }
            this.xterminal.write('Session closed');
         }
 
