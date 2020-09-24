@@ -2,6 +2,8 @@ const webpack = require("webpack");
 const copyWebpackPlugin = require('copy-webpack-plugin')
 
 const develBuild = process.env.TTY_SHARE_ENV === 'development';
+// https://stackoverflow.com/a/57676803/9238801 
+
 
 let mainConfig  = {
     entry: {
