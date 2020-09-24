@@ -12,6 +12,7 @@ let mainConfig  = {
     output: {
         path: __dirname + '/public/',
         filename: '[name].js',
+        publicPath: '/public/'
     },
     mode: develBuild ? 'development' : 'production',
     module: {
