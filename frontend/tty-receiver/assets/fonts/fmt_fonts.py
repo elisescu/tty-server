@@ -46,7 +46,7 @@ for font in p.iterdir():
   font-family: {family};
   font-style: {css_style};
   font-weight: {css_weight};
-  src: url("assets/fonts/{font.name}");
+  src: url("assets/fonts/{font.name}") format("truetype");
 }}           
 """]
 
