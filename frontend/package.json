@@ -12,6 +12,7 @@
   "dependencies": {
     "copy-webpack-plugin": "4.5.1",
     "css-loader": "^3.0.0",
+    "file-loader": "^6.1.0",
     "style-loader": "^0.23.1",
     "ts-loader": "^6.0.2",
     "typescript": "^3.5.2",
@@ -19,7 +20,5 @@
     "webpack-cli": "^3.3.4",
     "xterm": "3.14.4"
   },
-  "devDependencies": {
-    "file-loader": "^6.1.0"
-  }
+  "devDependencies": {}
 }
