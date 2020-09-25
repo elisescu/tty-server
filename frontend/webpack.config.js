@@ -9,7 +9,7 @@ let mainConfig  = {
     },
     output: {
         path: __dirname + '/public/',
-        filename: '[name].js'
+        filename: '[name].js',
     },
     mode: develBuild ? 'development' : 'production',
     module: {
