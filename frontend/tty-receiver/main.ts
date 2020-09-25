@@ -1,4 +1,4 @@
-import 'xterm/dist/xterm.css';
+import 'xterm/css/xterm.css';
 import './main.css';
 
 import { Terminal } from 'xterm';

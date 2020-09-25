@@ -1,0 +1,45 @@
+Vagrant.configure("2") do |config|
+
+  # Every Vagrant virtual environment requires a box to build off of.
+  config.vm.box = "ubuntu/focal64"
+  
+  # Create a forwarded port mapping which allows access to a specific port
+  # within the machine from a port on the host machine.
+  # By connecting to localhost:8080 from the host, we can access the guest's 
+  # webserver.
+
+  config.vm.network :forwarded_port, guest: 5000, host: 5000 
+  config.vm.network :forwarded_port, guest: 22, host: 5522
+  config.vm.network :forwarded_port, guest: 6543, host: 6543
+  
+  # Forward x11 via ssh. 
+  # Handy if you need to share a clipboard, convey viewport info, etc.
+  config.ssh.forward_x11 = true
+  
+  $install_script = <<-SCRIPT
+    build_deps="golang make go-dep" 
+    runtime_deps="dumb-init git"
+
+    apt-get update && \
+      apt-get install -y $build_deps $runtime_deps && \
+      cd /home/vagrant/go/src/github.com/elisescu/tty-server && \
+      GOPATH=/home/vagrant/go dep ensure && \
+      GOPATH=/home/vagrant/go make all && \
+      ln -s /home/vagrant/go/src/github.com/elisescu/tty-server/tty-server /usr/bin/tty-server
+  SCRIPT
+
+  $serve_script = <<-'SCRIPT'
+    cat << EOD | sed -e  "s#\\\\{#{#g; s#\\\\}#}#g" > /usr/bin/serve
+#!/usr/bin/env bash
+URL="$\\{1:-http://localhost:5000\\}"
+/usr/bin/tty-server -web_address :5000 --sender_address :6543 -url "$\\{URL\\}"
+EOD
+    chmod a+x /usr/bin/serve
+  SCRIPT
+   
+  config.vm.provision "file", source: ".", destination: "$HOME/go/src/github.com/elisescu/tty-server"
+  # config.vm.provision "shell", inline: 'mv "/home/vagrant/go" "/go"', name: "move_go"
+  config.vm.provision "shell", inline: $install_script, name: "install"
+  config.vm.provision "shell", inline: $serve_script, name: "serve"
+
+end
