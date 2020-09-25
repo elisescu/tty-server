@@ -11,8 +11,7 @@ let mainConfig  = {
     },
     output: {
         path: __dirname + '/public/',
-        filename: '[name].js',
-        publicPath: '/public/'
+        filename: '[name].js'
     },
     mode: develBuild ? 'development' : 'production',
     module: {
@@ -38,7 +37,8 @@ let mainConfig  = {
                 options: {
                   name: '[name].[ext]',
                   outputPath: 'fonts/',
-                  esModule: false
+                  esModule: false,
+                  publicPath: '/static/fonts/'
                 }
               }
             ]
