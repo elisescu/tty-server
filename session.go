@@ -96,7 +96,7 @@ func (session *ttyShareSession) HandleSenderConnection() {
 	for {
 		msg, err := senderConnection.ReadMessage()
 		if err != nil {
-			log.Debugf("TTYSender connnection finished withs with error: %s", err.Error())
+			log.Debugf("TTYSender connection finished withs with error: %s", err.Error())
 			break
 		}
 		session.handleSenderMessageLock(msg)
