@@ -50,7 +50,7 @@ func newTTYShareSession(conn net.Conn, serverURL string) *ttyShareSession {
 
 func (session *ttyShareSession) InitSender() error {
 	_, err := session.ttySenderConnection.InitServer(ServerSessionInfo{
-		URLWebReadWrite: session.serverURL + "/s/" + session.GetID(),
+		URLWebReadWrite: "\n\n **Your tty-share version is deprecated, and will stop working soon. Please update to the latest version!**\n\n" + session.serverURL + "/s/" + session.GetID(),
 	})
 	return err
 }
